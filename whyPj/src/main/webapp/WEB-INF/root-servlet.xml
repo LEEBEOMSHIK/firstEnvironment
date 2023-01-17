@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<!-- servlet-context.xml과는 반대로 view와 관련되지 않은 객체를 정의한다. 따라서 Service, Repository(DAO), 
+		DB등 비즈니스 로직과 관련된 설정을 해준다.백엔드 설정파일임 1. 이곳에 등록되는 빈은 모든 컨텍스트에서 사용할 수 있다. 2. 
+		service나 dao를 포함한, 웹 환경에 독립적인 빈들을 담아둔다. 3. 서로 다른 servlet-context에서 공유해야하는 
+		빈들을 등록해놓고 사용할 수 있다. 4. servlet-context 내의 빈들은 이용이 불가능하다 -->
+
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property> 
+		<property name="url" value="jdbc:log4jdbc:mysql://localhost:3306/nipponsik"></property> 
+		<property name="username" value="root"></property> <property name="password" 
+		value="0000"></property> </bean> <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> 
+		<property name="dataSource" ref="dataSource" /> <property name="configLocation" 
+		value="classpath:/mybatis-config.xml"></property> <property name="mapperLocations" 
+		value="classpath:mappers/**/*Mapper.xml"></property> </bean> <bean id="sqlSession" 
+		class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache"> 
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg> 
+		</bean> <context:component-scan base-package="org.zerock.persistence"></context:component-scan> 
+		<context:component-scan base-package="org.zerock.service"></context:component-scan> 
+		<aop:aspectj-autoproxy></aop:aspectj-autoproxy> -->
+
+
+	<context:component-scan
+		base-package="viewController">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+
+</beans>

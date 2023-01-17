@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		
+		
+		<!-- 
+		
+		요청과 관련된 객체를 정의한다! url과 관련된 컨트롤러나 어노테이션, 뷰 리졸버 등의 설정을 해준다. 프론트엔드 설정파일
+
+		이곳에 등록되는 빈은 해당 컨텍스트에서만 사용할 수 있다.
+		DispatcherServlet이 직접 사용하는 컨트롤러를 포함한 웹 관련 빈을 등록하는데 사용한다.
+		독자적인 컨텍스트를 가지며, root-context내의 빈을 사용할수 있다.
+
+ 		-->
+ 		
+ 		
+ 		<!-- <annotation-driven />
+
+			Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory
+			<resources mapping="/resources/**" location="/resources/" />
+		
+			Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory
+			<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+				<beans:property name="prefix" value="/WEB-INF/views/" />
+				<beans:property name="suffix" value=".jsp" />
+			</beans:bean>
+			
+			<context:component-scan base-package="controller" />  
+			
+		-->
+		
+		<annotation-driven />
+			
+		<!-- <resources mapping="/resources/**" location="/resources/" /> -->
+
+		<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<beans:property name="prefix" value="/WEB-INF/views/" />
+			<beans:property name="suffix" value=".jsp" />
+		</beans:bean>
+		
+		<context:component-scan base-package="controller">
+			<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		</context:component-scan>
+		
+</beans:beans>
